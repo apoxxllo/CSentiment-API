@@ -1,1 +1,1 @@
-web: gunicorn --preload -b :$PORT app:app
+web: ./setup.sh && gunicorn --preload -b :$PORT app:app
