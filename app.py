@@ -40,7 +40,7 @@ else:
     # WKHTMLTOPDF_CMD = subprocess.Popen(['which', os.environ.get('WKHTMLTOPDF_BINARY', 'wkhtmltopdf')],
     #                                    stdout=subprocess.PIPE).communicate()[0].strip()
     # config = pdfkit.configuration(wkhtmltopdf=WKHTMLTOPDF_CMD)
-    wkhtmltopdf_path = os.path.join(os.getcwd(), 'wkhtmltopdf.exe')
+    wkhtmltopdf_path = os.path.join(os.getcwd(), 'wkhtmltopdf.deb')
 
     # Ensure the executable is there
     if os.path.isfile(wkhtmltopdf_path):
