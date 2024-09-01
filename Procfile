@@ -1,1 +1,1 @@
-web: gunicorn --preload -b :$PORT CSentiment:app
+web: gunicorn --preload -b :$PORT app:app
