@@ -36,10 +36,17 @@ if platform.system() == "Windows":
         wkhtmltopdf=os.environ.get('WKHTMLTOPDF_BINARY', 'C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe'))
 # if in deployment nag run (if deployed na mao ni nga path gamiton para sa wkhtmltopdf)
 else:
-    os.environ['PATH'] += os.pathsep + os.path.dirname(sys.executable)
-    WKHTMLTOPDF_CMD = subprocess.Popen(['which', os.environ.get('WKHTMLTOPDF_BINARY', 'wkhtmltopdf')],
-                                       stdout=subprocess.PIPE).communicate()[0].strip()
-    config = pdfkit.configuration(wkhtmltopdf=WKHTMLTOPDF_CMD)
+    # os.environ['PATH'] += os.pathsep + os.path.dirname(sys.executable)
+    # WKHTMLTOPDF_CMD = subprocess.Popen(['which', os.environ.get('WKHTMLTOPDF_BINARY', 'wkhtmltopdf')],
+    #                                    stdout=subprocess.PIPE).communicate()[0].strip()
+    # config = pdfkit.configuration(wkhtmltopdf=WKHTMLTOPDF_CMD)
+    wkhtmltopdf_path = os.path.join(os.getcwd(), 'wkhtmltopdf.exe')
+
+    # Ensure the executable is there
+    if os.path.isfile(wkhtmltopdf_path):
+        config = pdfkit.configuration(wkhtmltopdf=wkhtmltopdf_path)
+    else:
+        raise OSError(f'No wkhtmltopdf executable found at {wkhtmltopdf_path}')
 
 wk_options = {
     'page-size': 'Letter',
